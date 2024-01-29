@@ -1,0 +1,31 @@
+{
+  "action": {
+    "default_title": "Axiell content displayer",
+    "default_popup": "index.html",
+    "default_icon": "JCK.png"
+  },
+  "background": {
+    "service_worker": "scanner.js",
+    "type": "module"
+  },
+  "description": "Open Sources from pc",
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "manifest_version": 3,
+  "name": "JCK app",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage",
+    "webNavigation",
+    "webRequest",
+    "webRequestAuthProvider",
+    "proxy"
+  ],
+  "version": "0.0.1",
+  "web_accessible_resources": [
+    {
+      "resources": ["ini.js", "index.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

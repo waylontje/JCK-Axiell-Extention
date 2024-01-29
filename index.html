@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ini settings</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1></h1>
+    <form>
+      <!-- Username Password Link building address to link to Container id to grab link from find query filter -->
+
+      <fieldset>
+        <h4>Login credentials</h4>
+        <p>
+          <label><span>Username: </span></label>
+          <input type="text" id="Username" name="Username" value="" />
+        </p>
+
+        <p>
+          <label><span>Password: </span></label>
+          <input type="Password" id="Password" name="password" value="" />
+        </p>
+      </fieldset>
+      <fieldset>
+        <h4>The site you want to work with</h4>
+        <p>
+          <label><span>Link: </span></label>
+          <input type="url" id="linkPrefix" name="Link" value="" />
+        </p>
+      </fieldset>
+      <fieldset>
+        <h4>Finding the div to replace</h4>
+        <p>
+          <label><span>Element ID the link is in </span></label>
+          <input type="text" id="elementID" name="ElementID" value="" />
+        </p>
+
+        <p>
+          <label><span>queryfilter text</span></label>
+          <input type="text" id="QueryText" name="queryfilter" value="" />
+        </p>
+      </fieldset>
+      <fieldset>
+        <h4>What part of the link replace</h4>
+        <p>
+          <label><span>Link part in the original </span></label>
+          <input type="text" id="partLinkID" name="partialLink" value="" />
+        </p>
+
+        <p>
+          <label><span>Replace with</span></label>
+          <input
+            type="text"
+            id="linkReplacement"
+            name="linkReplacement"
+            value=""
+          />
+        </p>
+        <p>
+          <h7>Finally </h7>
+          <label>
+            <span class="smallInput">
+              replace:<input type="text" id="char1" value="\" /> with
+              <input type="text" id="char2" value="/"
+            /></span>
+          </label>
+        </p>
+      </fieldset>
+    </form>
+    <script type="module" src="inifiller.js"></script>
+    <script type="module" src="ini.js"></script>
+  </body>
+</html>
