@@ -54,17 +54,28 @@ let retry = 3;
 
 chrome.webRequest.onAuthRequired.addListener(
   function handler(details) {
-    chrome.storage.local.get(["startValue"]).then((data)={
+    /*console.log("hai1")
+    let data = ProvideCredentials()
     let startValue = data.startValue;
-    let userName = startValue.Username;
-    let passWord = startValue.Password;
+    console.log(startValue.Username)
+    console.log("hai3")*/
+    let userName = "anonymous";
+    let passWord = "";
     if (--retry < 0) return { cancel: true };
     return { authCredentials: { username: userName, password: passWord } };
-    });
+    
+    
   },
   { urls: ["https://st-arsenaal.jhm.nl:5006/*"] },
   ["blocking"]
 );
+
+
+async function ProvideCredentials() {
+  let data = await chrome.storage.local.get(["startValue"]);
+  return data;
+}
+
 
 /*
 chrome.tabs.onUpdated.addListener(() => {

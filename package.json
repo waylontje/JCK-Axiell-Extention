@@ -1,8 +1,8 @@
 {
   "name": "JCK-addon",
   "version": "0.0.1",
-  "description": "running stuff in the browser",
-  "main": "xxx.js",
+  "description": "Serving Webdav content in the browser",
+  "main": "scanner.js",
   "author": {
     "name": "Waylon Tossou"
   }

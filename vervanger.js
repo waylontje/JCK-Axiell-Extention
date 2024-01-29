@@ -73,7 +73,7 @@ chrome.storage.local.get(["startValue"]).then((ini) => {
 
   function getTargetNodeWithRetry() {
     // Try to get the targetNode
-    let targetNode = document.getElementById("workspace");
+    let targetNode = document.getElementById("workspace_ResultCursorWidget_ResultCursorView_RecordEditorWidget");
 
     // If it's empty, try the alternative ID
     if (!(targetNode instanceof Node)) {
@@ -154,17 +154,22 @@ chrome.storage.local.get(["startValue"]).then((ini) => {
       name: "media",
     };
     let a;
+    let srcAttributes = {
+      src: "",
+      type: "",
+    };
+
     if (sort == "wav") {
       a = document.createElement("audio");
+      srcAttributes.type = "audio/x-wav"
     } else {
       a = document.createElement("video");
+      srcAttributes.type = "video/mp4"
+      vidAttributes.height = "300px"
     }
     a = addAttributes(vidAttributes, a);
     console.log(a);
-    let srcAttributes = {
-      src: "",
-      type: "audio/x-wav",
-    };
+    
     srcAttributes.src = eigenLink;
 
     let b = document.createElement("source");
