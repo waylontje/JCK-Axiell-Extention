@@ -12,8 +12,9 @@ chrome.storage.local.get(["startValue"]).then((ini) => {
 
   // Create a MutationObserver instance and a callback function
   const observer = new MutationObserver((mutationsList, observer) => {
-    // Handle mutations here
+    // Handle each mutations seperately here
     mutationsList.forEach((mutation) => {
+      //if it includes a specific word (preferably put this in ini later)
       if (mutation.target.outerHTML.includes("Digitaal")) {
         storageCache.QueryText.forEach((qtext) => {
           let contenttemp = document.querySelectorAll(qtext);

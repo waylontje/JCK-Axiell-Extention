@@ -1,3 +1,7 @@
+/*
+File to put in initial value's for the form in index so you don't have to manually put in the parameters or hardcode them
+*/
+
 export const ini = {
   Username: "anonymous",
   Password: "",
@@ -10,10 +14,5 @@ export const ini = {
   char2: "/",
 };
 
-/*
 
-chrome.storage.session.set({ startValue: ini }, function () {
-  console.log("Data saved:", ini);
-});
-*/
-// Check if "startValue" is stored
+

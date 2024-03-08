@@ -1,5 +1,7 @@
 import { ini } from "/ini.js";
 
+
+//listen for intallation/update/Refresh
 chrome.runtime.onInstalled.addListener((details) => {
   const currentVersion = chrome.runtime.getManifest().version;
   const previousVersion = details.previousVersion;
@@ -8,6 +10,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   console.log(`Previous Version: ${previousVersion}`);
   console.log(`Current Version: ${currentVersion}`);
 
+  // re-save the ini values after reinstall/refresh/update
   chrome.storage.local.set({ startValue: ini }, function () {
     console.log("Initial config data saved:", ini);
   });
@@ -27,6 +30,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   }
 });
 
+//check if webnavigation includes the site you want to inject something into
 chrome.webNavigation.onCompleted.addListener(
   (tab) => {
     console.log("triggered");
@@ -36,6 +40,7 @@ chrome.webNavigation.onCompleted.addListener(
     chrome.tabs.query({ currentWindow: true, active: true }, function (tab) {
       chrome.scripting.executeScript({
         target: { tabId: tab[0].id, allFrames: true },
+        //this is where you put the script that needs to be injected in the site
         files: ["vervanger.js"],
       });
     });
@@ -43,6 +48,7 @@ chrome.webNavigation.onCompleted.addListener(
   {
     url: [
       {
+        //this is where you put the site info
         hostSuffix: ".adlibhosting.com",
         pathPrefix: "/collections/",
       },
@@ -50,8 +56,11 @@ chrome.webNavigation.onCompleted.addListener(
   }
 );
 
+
+//the amount of times you want to retry authenticating below
 let retry = 3;
 
+//Listen for authentication request
 chrome.webRequest.onAuthRequired.addListener(
   function handler(details) {
     /*console.log("hai1")
@@ -59,6 +68,8 @@ chrome.webRequest.onAuthRequired.addListener(
     let startValue = data.startValue;
     console.log(startValue.Username)
     console.log("hai3")*/
+
+    //username and password for webdav connection is hardcoded now. preferably pit this in ini. preferably also hash ini?
     let userName = "anonymous";
     let passWord = "";
     if (--retry < 0) return { cancel: true };
@@ -66,6 +77,7 @@ chrome.webRequest.onAuthRequired.addListener(
     
     
   },
+  //this is the url you get the authentication request from
   { urls: ["https://st-arsenaal.jhm.nl:5006/*"] },
   ["blocking"]
 );
@@ -76,13 +88,3 @@ async function ProvideCredentials() {
   return data;
 }
 
-
-/*
-chrome.tabs.onUpdated.addListener(() => {
-  let tab = getTab();
-  if (tab.url.includes("https://jck-apw.adlibhosting.com/collections/?")) {
-    insertScript();
-    chrome.tabs.create({ url: "https://www.google.com/" });
-  }
-});
-*/
